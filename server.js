@@ -4,11 +4,11 @@ const app = express()
 app.use(express.static(__dirname + "/dist/ps-angular"))
 
 app.get("/**", (req, res) => {
-  res.sendFile(__dirname + "/dist/ps-angular/index.html")
+  res.sendFile(__dirname + "/dist/ps-angular/server/index.html")
 })
 
-const port = process.env.PORT || 4200
+const port = process.env.PORT || 4202
 
-app.listen(port, () => {
+app.listen(4202, () => {
   console.log("Iniciou na porta: " + port)
 })
