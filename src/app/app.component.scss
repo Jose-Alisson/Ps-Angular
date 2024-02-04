@@ -1,5 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Roboto:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Ubuntu:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap");
-
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Montserrat:ital,wght@0,400;0,700;1,400;1,700&family=Roboto:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Ubuntu:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&family=Work+Sans:ital@0;1&display=swap");
 :root {
   --color-primary: #fffff;
   --color-second: #fffff;
@@ -7,7 +6,7 @@
 
 * {
   box-sizing: border-box;
-  font-family: "Roboto", sans-serif;
+  font-family: "Work Sans", sans-serif;
 }
 
 header nav {
@@ -19,19 +18,21 @@ header nav {
 
   height: 70px;
 
-  .establisment{
+  .establisment {
     display: flex;
     align-items: center;
     gap: 15px;
   }
 
-  .icon{
+  .icon {
     width: 50px;
     height: 50px;
+    min-width: 50px;
+    min-height: 50px;
     border-radius: 100px;
     overflow: hidden;
 
-    img{
+    img {
       width: 100%;
       height: 100%;
     }
@@ -55,7 +56,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Ubuntu", sans-serif;
+  font-family: "Montserrat", sans-serif;
 }
 
 section {
@@ -72,7 +73,7 @@ section {
   }
 }
 
-ul{
+ul {
   padding: 0;
 }
 
@@ -118,6 +119,10 @@ section:not(.banner) {
   color: white;
 }
 
+.how-request{
+  background: #feca57;
+}
+
 .how-request ul {
   display: flex;
   flex-direction: column;
@@ -131,8 +136,8 @@ section:not(.banner) {
 
     span {
       position: relative;
-      background: #feca57;
-      color: #060606;
+      background: #060606;
+      color: white;
       min-height: 35px;
       height: 35px;
       min-width: 37px;
@@ -145,6 +150,7 @@ section:not(.banner) {
     }
 
     p {
+      background: white;
       border-radius: 20px;
       padding: 10px;
       box-shadow: 0px 2px 5px 2px rgba(128 128 128/ 17%);
@@ -154,7 +160,7 @@ section:not(.banner) {
   li:not(:last-child) span::before {
     position: absolute;
     content: "";
-    background: #feca57;
+    background: #060606;
     width: 5px;
     height: 70px;
     left: 50%;
@@ -165,66 +171,87 @@ section:not(.banner) {
 
 .menu-slider {
   max-width: 100% !important;
-  overflow: hidden;
   position: relative;
 }
 
-.menu-slider .slider {
-  display: flex;
-  overflow-x: auto;
+.menu-slider {
+  display: grid;
   gap: 20px;
   max-width: 100%;
   width: fit-content;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  justify-content: center;
+  align-items: center;
+}
 
-  .card {
-    border-radius: 18px;
-    padding: 10px;
-    min-width: 300px;
+.card {
+  display: flex;
+  flex-direction: column;
+  border-radius: 12px;
+  transform: scale(0.9);
+  transition: 0.1s ease-out;
+  box-shadow: 0px 2px 10px 0px rgba(128 128 128/ 17%);
+
+  .card-preview {
+    max-height: 220px;
+    background: #feca57;
+    border-radius: 12px 12px 0px 0px;
     display: flex;
-    flex-direction: column;
-    transition: 0.2s;
-    gap: 15px;
-    transform: scale(0.9);
+    justify-content: center;
+    padding: 5px;
 
-    .unique{
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-    }
-
-    span{
-      font-size: 1.8rem;
-      text-transform: uppercase;
-      font-weight: 600;
-    }
-
-    .card-image {
-      background: #feca57;
-      border-radius: 20px;
-    }
-
-    .card-image img {
-      width: 100%;
+    img {
+      max-width: inherit;
+      max-height: inherit;
+      transition: 0.2s ease-in;
       object-fit: contain;
-    }
-
-    .btn-buy{
-      background: #060606;
-      color: #feca57;
-      display: none;
-      border-radius: 8px;
-      border: 0px;
-      padding: 10px 15px;
     }
   }
 
-  .card.current{
-    background: #feca57;
-    color: #fff;
-    transform: scale(1);
+  .card-content {
+    padding: 1.5em;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    .title {
+      text-transform: uppercase;
+    }
+
+    .description {
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      -webkit-line-clamp: 2;
+      text-overflow: ellipsis;
+      font-size: 1.6rem;
+    }
 
     .btn-buy{
-      display: block;
+      border-radius: 25px;
+      font-family: 'Montserrat', sans-serif;
+      background: #feca57;
+      font-weight: 700;
+      padding: 15px 20px;
+      border: 0;
+      color: white;
+      width: 100%;
+      font-size: 1.6rem;
+    }
+  }
+
+  * {
+    margin: 0;
+  }
+
+  &:hover{
+    transform: scale(1) translateY(-15px);
+
+    .card-preview img{
+      transform: translateY(-15px);
     }
   }
 }
@@ -276,8 +303,8 @@ section:not(.banner) {
   }
 }
 
-@media screen and (max-with: 462px){
-  header nav .establisment h3{
+@media screen and (max-with: 462px) {
+  header nav .establisment h3 {
     display: none;
   }
 }

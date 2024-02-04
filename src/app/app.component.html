@@ -4,7 +4,6 @@
       <div class="icon">
         <img src="../assets/file.png" alt="" />
       </div>
-      <h3>Pizzaria Sapucaian's</h3>
     </div>
 
     <ul>
@@ -16,43 +15,49 @@
 </header>
 <section class="banner">
   <div class="side-left">
-    <h1>Bem-vindo à <span class="marked-darken">Pizzaria Sapucaian's</span></h1>
+    <h1 style="font-size: 5.4rem;">
+      Bem-vindo à Pizzaria Sapucaian's
+    </h1>
     <p>
       Desfrute da autêntica experiência em pizzas feitas com paixão e
       ingredientes de qualidade. Faça seu pedido online e saboreie cada mordida!
     </p>
   </div>
   <div class="side-right">
-    <img src="../assets/20-2.png" alt="" />
+    <img src="../assets/pngegg-m.png" alt="" />
   </div>
 </section>
 <section class="menu" id="menu">
   <h1>Destaques do Cardápio</h1>
   <div class="menu-slider">
-    <button class="arrow-left" (click)="moverSlider(-1)">
+    <!-- <button class="arrow-left" (click)="moverSlider(-1)">
       <i class="fa-solid fa-caret-left"></i>
     </button>
     <button class="arrow-right" (click)="moverSlider(1)">
       <i class="fa-solid fa-caret-right"></i>
-    </button>
-    <div class="slider" #slider>
-      @for (item of [1,2,3,4,5,6,7,8,9]; track $index) {
-      <div class="card" (click)="selectCard($index)">
-        <div class="card-image">
-          <img src="../assets/20-2.png" alt="" />
-        </div>
-        <div class="unique">
-          <span>Pizza de Calabresa</span>
-          <span>{{ 22.0 | currency : "BRL" }}</span>
-        </div>
-        <button class="btn-buy">Comprar</button>
+    </button> -->
+    @for (item of [1,2,3,4,5,6,7]; track $index) {
+    <div class="card">
+      <div class="card-preview">
+        <img src="../assets/20-2.png" alt="" />
       </div>
-      }
+      <div class="card-content">
+        <h3 class="title">Pizza Calabresa</h3>
+        <p class="description">
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. At voluptatum autem id ipsam molestias dolorem?
+        </p>
+        <button class="btn-buy">
+          {{ 22.0 | currency : "BRL" : "symbol-narrow" }} - Comprar
+        </button>
+      </div>
     </div>
+    }
   </div>
+  <p style="text-align: center;">Quer explorar todos os sabores incríveis que oferecemos? Clique abaixo para conferir nosso cardápio completo e descubra uma variedade deliciosa que vai além dos destaques mencionados.</p>
+  <a style="text-align: center; font-style: italic;color: #060606;" href="#">Veja o Cardápio Completo</a>
 </section>
 <section class="how-request" id="request">
-  <h1><span class="marked-light">Faça Seu Pedido</span></h1>
+  <h1><span class="marked-light" style="background: #060606; color: #feca57;">Faça Seu Pedido</span></h1>
   <ul>
     <li>
       <span>1</span>
@@ -96,7 +101,9 @@
         <div class="box-title">Redes Sociais</div>
         <ul>
           <li>
-            <a href="https://www.instagram.com/pizzaria.sapucaians/">Instagram</a>
+            <a href="https://www.instagram.com/pizzaria.sapucaians/"
+              >Instagram</a
+            >
           </li>
         </ul>
       </div>
