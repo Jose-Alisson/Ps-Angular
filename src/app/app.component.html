@@ -1,11 +1,14 @@
 <header>
   <nav>
-    <div class="establisment">
-      <div class="icon">
-        <img src="../assets/file.png" alt="" />
+    <div class="image-text">
+      <div class="image">
+        <img src="../assets/file.png" alt="Logo Pizza Sapucaian's" />
+      </div>
+      <div class="text header-text">
+        <div class="establishment">Pizzaria</div>
+        <div class="name">Sapucaian's</div>
       </div>
     </div>
-
     <ul>
       <li (click)="scrollToElement('menu')">Menu</li>
       <li (click)="scrollToElement('request')">Pedido</li>
@@ -15,9 +18,7 @@
 </header>
 <section class="banner">
   <div class="side-left">
-    <h1 style="font-size: 5.4rem;">
-      Bem-vindo à Pizzaria Sapucaian's
-    </h1>
+    <h1 style="font-size: 5.4rem">Bem-vindo à Pizzaria Sapucaian's</h1>
     <p>
       Desfrute da autêntica experiência em pizzas feitas com paixão e
       ingredientes de qualidade. Faça seu pedido online e saboreie cada mordida!
@@ -39,12 +40,13 @@
     @for (item of [1,2,3,4,5,6,7]; track $index) {
     <div class="card">
       <div class="card-preview">
-        <img src="../assets/20-2.png" alt="" />
+        <img src="../assets/coca cola.png" alt="" />
       </div>
       <div class="card-content">
         <h3 class="title">Pizza Calabresa</h3>
         <p class="description">
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. At voluptatum autem id ipsam molestias dolorem?
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. At
+          voluptatum autem id ipsam molestias dolorem?
         </p>
         <button class="btn-buy">
           {{ 22.0 | currency : "BRL" : "symbol-narrow" }} - Comprar
@@ -53,11 +55,21 @@
     </div>
     }
   </div>
-  <p style="text-align: center;">Quer explorar todos os sabores incríveis que oferecemos? Clique abaixo para conferir nosso cardápio completo e descubra uma variedade deliciosa que vai além dos destaques mencionados.</p>
-  <a style="text-align: center; font-style: italic;color: #060606;" href="#">Veja o Cardápio Completo</a>
+  <p style="text-align: center">
+    Quer explorar todos os sabores incríveis que oferecemos? Clique abaixo para
+    conferir nosso cardápio completo e descubra uma variedade deliciosa que vai
+    além dos destaques mencionados.
+  </p>
+  <a style="text-align: center; font-style: italic; color: #060606" href="#"
+    >Veja o Cardápio Completo</a
+  >
 </section>
 <section class="how-request" id="request">
-  <h1><span class="marked-light" style="background: #060606; color: #feca57;">Faça Seu Pedido</span></h1>
+  <h1>
+    <span class="marked-light" style="background: #060606; color: #feca57"
+      >Faça Seu Pedido</span
+    >
+  </h1>
   <ul>
     <li>
       <span>1</span>

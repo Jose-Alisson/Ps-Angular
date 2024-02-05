@@ -38,6 +38,38 @@ header nav {
     }
   }
 
+  .image-text{
+    display: flex;
+    gap: 3px;
+    overflow: hidden;
+    align-items: center;
+  }
+
+  .image{
+    min-width: 50px;
+    min-height: 50px;
+    border-radius: 100%;
+
+    img{
+      width: 50px;
+      height: 50px;
+    }
+  }
+
+  .text{
+    font-size: 16px;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  .header-text{
+    display: flex;
+    flex-direction: column;
+    transition: 0.2s ease;
+  }
+
+
+
   ul {
     display: flex;
     gap: 25px;
@@ -194,11 +226,11 @@ section:not(.banner) {
 
   .card-preview {
     max-height: 220px;
-    background: #feca57;
+    background: linear-gradient(45deg, tomato, #feca57);
     border-radius: 12px 12px 0px 0px;
     display: flex;
     justify-content: center;
-    padding: 5px;
+    padding: 1em;
 
     img {
       max-width: inherit;
@@ -225,7 +257,7 @@ section:not(.banner) {
       display: -webkit-box;
       -webkit-box-orient: vertical;
       overflow: hidden;
-      -webkit-line-clamp: 2;
+      -webkit-line-clamp: 3;
       text-overflow: ellipsis;
       font-size: 1.6rem;
     }
@@ -233,13 +265,13 @@ section:not(.banner) {
     .btn-buy{
       border-radius: 25px;
       font-family: 'Montserrat', sans-serif;
-      background: #feca57;
+      background: transparent;
       font-weight: 700;
       padding: 15px 20px;
-      border: 0;
-      color: white;
+      border: 2px solid tomato;
+      color: tomato;
       width: 100%;
-      font-size: 1.6rem;
+      font-size: 1.8rem;
     }
   }
 
