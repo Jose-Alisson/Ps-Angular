@@ -10,10 +10,28 @@
       </div>
     </div>
     <ul>
-      <li (click)="scrollToElement('menu')">Menu</li>
+      <li (click)="scrollToElement('menu')">Destaque</li>
       <li (click)="scrollToElement('request')">Pedido</li>
       <li (click)="scrollToElement('about')">Sobre</li>
+      <li>Cardápio</li>
     </ul>
+    <div class="nav-actions">
+      <div class="search">
+        <div class="icon">
+          <i class="fi fi-rr-search"></i>
+        </div>
+        <input type="text" placeholder="Pesquisar" />
+      </div>
+      <div class="action search">
+        <i class="fi fi-rr-search"></i>
+      </div>
+      <div class="action bag">
+        <i class="fi fi-rr-shopping-bag"></i>
+      </div>
+      <div class="action menu">
+        <i class="fi fi-rr-menu-burger"></i>
+      </div>
+    </div>
   </nav>
 </header>
 <section class="banner">
@@ -31,13 +49,13 @@
 <section class="menu" id="menu">
   <h1>Destaques do Cardápio</h1>
   <div class="menu-slider">
-    <!-- <button class="arrow-left" (click)="moverSlider(-1)">
-      <i class="fa-solid fa-caret-left"></i>
+    <!-- <button class="arrow-left" (click  )="moverSlider(-1)">
+      <i class="fa-solid fa-caret-left">Q</i>
     </button>
-    <button class="arrow-right" (click)="moverSlider(1)">
+    <button fqclass="arrow-right" (click)="moverSlider(1)">
       <i class="fa-solid fa-caret-right"></i>
     </button> -->
-    @for (item of [1,2,3,4,5,6,7]; track $index) {
+    @for (item of [1,2,3,4,5,6]; track $index) {
     <div class="card">
       <div class="card-preview">
         <img src="../assets/coca cola.png" alt="" />
@@ -46,11 +64,12 @@
         <h3 class="title">Pizza Calabresa</h3>
         <p class="description">
           Lorem ipsum dolor sit amet consectetur, adipisicing elit. At
-          voluptatum autem id ipsam molestias dolorem?
+            voluptatum autem id ipsam molestias dolorem?
         </p>
         <button class="btn-buy">
           {{ 22.0 | currency : "BRL" : "symbol-narrow" }} - Comprar
         </button>
+
       </div>
     </div>
     }

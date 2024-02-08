@@ -1,19 +1,28 @@
-import { CurrencyPipe, ViewportScroller } from '@angular/common';
-import { AfterViewInit, Component, inject } from '@angular/core';
+import { CurrencyPipe, ViewportScroller, AsyncPipe } from '@angular/common';
+import { AfterViewInit, Component, OnInit, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-
+import { ProductService } from './shared/services/product/product.service';1
+import { Observable, of } from 'rxjs';
+import { HttpClientModule } from '@angular/common/http';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, CurrencyPipe],
+  imports: [RouterOutlet, CurrencyPipe, AsyncPipe, HttpClientModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
-export class AppComponent implements AfterViewInit {
+export class AppComponent implements OnInit ,AfterViewInit {
+
+  destaque$: Observable<any[]> = of([])
 
   private vs = inject(ViewportScroller);
+  private ps = inject(ProductService)
 
-  cardCurrent = 0;
+  constructor(){}
+
+  ngOnInit(): void {
+      //this.destaque$ = this.ps.getByOffSet("467ef5a8-a298-416c-afb7-d3d6e0a02f7d", 0)
+  }
 
   ngAfterViewInit(): void {}
 
@@ -27,42 +36,5 @@ export class AppComponent implements AfterViewInit {
     }
 
     this.vs.scrollToPosition([0, 0]);
-  }
-
-  selectCard(index: number) {
-    this.cardCurrent = index;
-    this.moverSlider(0);
-  }
-
-  moverSlider(count: number) {
-    this.cardCurrent += count;
-
-    let carrosselWrapper = document.querySelector('.slider') as HTMLDivElement;
-    let cards = carrosselWrapper.children; //document.querySelectorAll('.card-product');
-
-    if (this.cardCurrent > cards.length - 1) {
-      this.cardCurrent = 0;
-    }
-    if (this.cardCurrent < 0) {
-      this.cardCurrent = cards.length - 1;
-    }
-    for (let i = 0; i < cards.length; i++) {
-      cards[i].classList.remove('current');
-    }
-
-    const posicaoCard =
-      (cards[this.cardCurrent] as HTMLDivElement).offsetLeft -
-      carrosselWrapper.offsetLeft;
-
-    const posicaoCentralizada =
-      posicaoCard -
-      carrosselWrapper.offsetWidth / 2 +
-      (cards[this.cardCurrent] as HTMLDivElement).offsetWidth / 2;
-
-    carrosselWrapper.scrollTo({
-      left: posicaoCentralizada,
-      behavior: 'smooth',
-    });
-    cards[this.cardCurrent].classList.add('current');
   }
 }
