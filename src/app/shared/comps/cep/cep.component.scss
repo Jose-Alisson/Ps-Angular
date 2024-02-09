@@ -1,10 +1,7 @@
 .cep-form{
   display: flex;
+  flex-wrap: wrap;
   gap: 10px;
-
-  input{
-    font-size: 1.6rem;
-  }
 
   button{
     border-radius: 7px;

@@ -28,12 +28,11 @@
         <h3 class="title">Pizza Calabresa</h3>
         <p class="description">
           Lorem ipsum dolor sit amet consectetur, adipisicing elit. At
-            voluptatum autem id ipsam molestias dolorem?
+          voluptatum autem id ipsam molestias dolorem?
         </p>
         <button class="btn-buy">
           {{ 22.0 | currency : "BRL" : "symbol-narrow" }} - Comprar
         </button>
-
       </div>
     </div>
     }
@@ -71,12 +70,29 @@
 <section class="delivery">
   <h1>Verifique Se Entregamos em Sua Residência</h1>
   <div class="side-top">
-    <img src="../../../assets/Take Away-pana.svg" alt="">
+    <img src="../../../assets/Take Away-pana.svg" alt="" />
   </div>
   <div class="side-down">
-    <p>Antes de fazer seu pedido, verifique se oferecemos entrega na sua área. Insira seu CEP abaixo para confirmar:</p>
+    <p>
+      Antes de fazer seu pedido, verifique se oferecemos entrega na sua área.
+      Insira seu CEP abaixo para confirmar:
+    </p>
     <app-cep></app-cep>
   </div>
+</section>
+<section class="opening-hours">
+  <h1 class="marked-light" style="background: #060606; color: #feca57">
+    Horário de Funcionamento
+  </h1>
+  <ul>
+    <li><span>Segunda</span><span>18:20 - 23:30</span></li>
+    <li><span>Terça</span> <span>18:20 - 23:30</span></li>
+    <li><span>Quarta</span> <span>18:20 - 23:30</span></li>
+    <li><span>Quinta</span> <span>18:20 - 23:30</span></li>
+    <li><span>Sexta</span> <span>18:20 - 23:30</span></li>
+    <li><span>Sábado </span> <span>18:20 - 00:00</span></li>
+    <li><span>Domingo</span> <span>18:20 - 00:00</span></li>
+  </ul>
 </section>
 <section class="about" id="about">
   <h1>Sobre a Sapucaian's</h1>
