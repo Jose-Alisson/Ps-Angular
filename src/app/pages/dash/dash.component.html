@@ -15,15 +15,15 @@
       </div>
     </div>
     <ul>
-      <li>Inicio</li>
-      <li>Cardápio</li>
+      <li [routerLink]="['./home']">Inicio</li>
+      <li [routerLink]="['./menu']">Cardápio</li>
     </ul>
     <div class="nav-actions">
       <div class="search">
         <div class="icon">
           <i class="fi fi-rr-search"></i>
         </div>
-        <input type="text" placeholder="Pesquisar" />
+        <input type="text" placeholder="Pesquisar" (keyup)="search($event)" [formControl]="searchControl"/>
       </div>
       <div class="action lupa">
         <i class="fi fi-rr-search"></i>
