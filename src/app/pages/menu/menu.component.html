@@ -2,11 +2,11 @@
   <div class="side-left"></div>
   <div class="side-right">
     <div class="result">
-      <h2>Explore nossa variedade de produtos abaixo</h2>
+      <h2>{{searchResult != '' ? 'Resultado para ' + searchResult : 'Explore nossa variedade de produtos'}}</h2>
       <br>
       <div class="result-items">
         @for (item of [1,2,3,4,5,6,7,8,9]; track $index) {
-          <div class="item">
+          <div class="item" [routerLink]="['/d/item/' +  item]">
             <div class="item-preview">
               <img src="../../../assets/20-2.png" alt="">
             </div>

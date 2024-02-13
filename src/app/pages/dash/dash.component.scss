@@ -1,3 +1,21 @@
+*{
+  margin: 0;
+}
+
+app-side-bar ul{
+  list-style: none;
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+  padding: 0;
+
+  li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
 header {
   background: #060606;
 }
@@ -11,7 +29,7 @@ header > span {
   margin: auto;
   color: white;
 
-  *{
+  * {
     margin: 0;
   }
 
@@ -128,7 +146,6 @@ header nav {
   }
 }
 
-
 @media screen and (max-width: 955px) {
   header nav {
     .header-text {
@@ -160,3 +177,38 @@ header nav {
     }
   }
 }
+
+.spanded {
+  background: #060606;
+  display: none;
+
+  .search {
+    position: relative;
+
+    .icon {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      left: 8px;
+      font-size: 18px;
+      color: white;
+    }
+
+    input {
+      outline: none;
+      width: 100%;
+      background: #181818;
+      border: 0;
+      padding: 10px 5px 10px 35px;
+      color: white;
+      font-family: "Work Sans", sans-serif;
+      font-size: 18px;
+      font-weight: 500;
+    }
+  }
+}
+
+.spanded.active {
+  display: block;
+}
+

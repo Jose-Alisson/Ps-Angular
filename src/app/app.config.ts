@@ -7,5 +7,10 @@ import { provideHttpClient } from '@angular/common/http';
 import { provideEnvironmentNgxMask } from 'ngx-mask';
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideRouter(routes), provideClientHydration(), provideHttpClient(), provideEnvironmentNgxMask()]
+  providers: [
+    provideRouter(routes),
+    provideClientHydration(),
+    provideHttpClient(),
+    provideEnvironmentNgxMask(),
+  ],
 };

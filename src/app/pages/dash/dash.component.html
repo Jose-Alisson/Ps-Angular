@@ -1,3 +1,21 @@
+
+<app-side-bar [side]="'right'" #side>
+  <ul>
+    <li [routerLink]="['./home']">
+      <h2>Inicio</h2>
+      <span>></span>
+    </li>
+    <li [routerLink]="['./menu']">
+      <h2>Cardápio</h2>
+      <span>></span>
+    </li>
+  </ul>
+</app-side-bar>
+
+<app-side-bar [side]="'right'" #cart>
+
+</app-side-bar>
+
 <header>
   <!-- <span>
     <button>Login</button>
@@ -7,7 +25,7 @@
   <nav>
     <div class="image-text">
       <div class="image">
-        <img src="../assets/logo 03 (3).png" alt="Logo Pizza Sapucaian's" />
+        <img src="../assets/logo 03.png" alt="Logo Pizza Sapucaian's" />
       </div>
       <div class="text header-text">
         <div class="establishment">Pizzaria</div>
@@ -25,16 +43,24 @@
         </div>
         <input type="text" placeholder="Pesquisar" (keyup)="search($event)" [formControl]="searchControl"/>
       </div>
-      <div class="action lupa">
+      <div class="action lupa" (click)="searchEspaded.classList.toggle('active')">
         <i class="fi fi-rr-search"></i>
       </div>
       <div class="action bag">
         <i class="fi fi-rr-shopping-bag"></i>
       </div>
-      <div class="action menu">
+      <div class="action menu" (click)="side.toogleActive()">
         <i class="fi fi-rr-menu-burger"></i>
       </div>
     </div>
   </nav>
 </header>
+<div class="spanded" #searchEspaded>
+  <div class="search">
+    <div class="icon">
+      <i class="fi fi-rr-search"></i>
+    </div>
+    <input type="text" placeholder="Pesquisar" (keyup)="search($event)" [formControl]="searchControl"/>
+  </div>
+</div>
 <router-outlet></router-outlet>

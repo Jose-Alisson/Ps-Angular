@@ -1,13 +1,14 @@
 import { CurrencyPipe } from '@angular/common';
 import { Component } from '@angular/core';
 import { CepComponent } from "../../shared/comps/cep/cep.component";
+import { RouterLink } from '@angular/router';
 
 @Component({
     selector: 'app-home',
     standalone: true,
     templateUrl: './home.component.html',
     styleUrl: './home.component.scss',
-    imports: [CurrencyPipe, CepComponent]
+    imports: [CurrencyPipe, CepComponent, RouterLink]
 })
 export class HomeComponent {
 

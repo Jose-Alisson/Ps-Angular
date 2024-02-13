@@ -1,0 +1,48 @@
+.fade{
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
+.side-bar{
+  position: fixed;
+  height: 100%;
+  padding: 1em;
+  background: white;
+  transition: 0.2s;
+  z-index: 1;
+}
+
+
+@keyframes slide-right {
+  from{
+    transform: translateX(100%);
+  }
+
+  to{
+    transform: translateX(0%);
+  }
+}
+
+
+@keyframes slide-left {
+  from{
+    transform: translateX(-100%);
+  }
+
+  to{
+    transform: translateX(0%);
+  }
+}
+
+.side-bar.left {
+  left: 0;
+  animation: 0.2s slide-left;
+}
+
+.side-bar.right {
+  right: 0;
+  animation: 0.2s slide-right;
+}
