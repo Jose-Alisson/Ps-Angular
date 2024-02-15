@@ -1,4 +1,4 @@
-
+q
 <app-side-bar [side]="'right'" #side>
   <ul>
     <li [routerLink]="['./home']">
@@ -11,17 +11,8 @@
     </li>
   </ul>
 </app-side-bar>
-
-<app-side-bar [side]="'right'" #cart>
-
-</app-side-bar>
-
+<app-cart #cart ></app-cart>
 <header>
-  <!-- <span>
-    <button>Login</button>
-    <p style="color: #feca57;font-style: italic;">Verifique se entregamos em seu cep</p>
-    &nbsp;
-  </span> -->
   <nav>
     <div class="image-text">
       <div class="image">
@@ -46,7 +37,7 @@
       <div class="action lupa" (click)="searchEspaded.classList.toggle('active')">
         <i class="fi fi-rr-search"></i>
       </div>
-      <div class="action bag">
+      <div class="action bag" (click)="cart.side?.toogleActive()">
         <i class="fi fi-rr-shopping-bag"></i>
       </div>
       <div class="action menu" (click)="side.toogleActive()">
