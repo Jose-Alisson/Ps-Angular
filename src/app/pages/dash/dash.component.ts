@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { Router, RouterLink, RouterOutlet } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { SideBarComponent } from '../../shared/comps/side-bar/side-bar.component';
 import { CartComponent } from '../../shared/comps/cart/cart.component';
 
@@ -15,6 +15,7 @@ import { CartComponent } from '../../shared/comps/cart/cart.component';
     ReactiveFormsModule,
     SideBarComponent,
     CartComponent,
+    RouterLinkActive
   ],
 })
 export class DashComponent {

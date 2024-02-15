@@ -1,18 +1,27 @@
-*{
+qq* {
   margin: 0;
 }
 
-app-side-bar ul{
+app-side-bar ul {
   list-style: none;
   display: flex;
   gap: 10px;
   flex-direction: column;
-  padding: 0;
+  padding: 15px;
 
   li {
+    padding: 15px 20px;
+    color: #feca57;
+    border-radius: 7px;
+    transition: 0.2s ease;
+    gap: 30px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+  }
+
+  li.active {
+    background: #181818;
   }
 }
 
@@ -258,9 +267,8 @@ header nav {
   list-style: none;
 }
 
-
 @media screen and (max-width: 580px) {
-  .footer{
+  .footer {
     align-items: flex-start;
   }
 }

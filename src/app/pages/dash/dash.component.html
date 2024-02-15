@@ -1,13 +1,14 @@
-q
 <app-side-bar [side]="'right'" #side>
   <ul>
-    <li [routerLink]="['./home']">
+    <li [routerLink]="['./home']" routerLinkActive="active">
+      <i class="fi fi-rr-home"></i>
       <h2>Inicio</h2>
-      <span>></span>
+      &nbsp;
     </li>
-    <li [routerLink]="['./menu']">
+    <li [routerLink]="['./menu']" routerLinkActive="active">
+      <i class="fi fi-rr-utensils"></i>
       <h2>Cardápio</h2>
-      <span>></span>
+      &nbsp;
     </li>
   </ul>
 </app-side-bar>
