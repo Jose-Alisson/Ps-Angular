@@ -1,3 +1,6 @@
+h1{
+  margin: 1em;
+}
 
 section {
   display: flex;
@@ -112,6 +115,7 @@ section:not(.banner) {
   li {
     display: flex;
     align-items: center;
+    margin: 1em;
     gap: 30px;
 
     span {
