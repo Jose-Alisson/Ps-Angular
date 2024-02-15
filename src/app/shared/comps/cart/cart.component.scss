@@ -2,6 +2,14 @@
   color: white;
 }
 
+.content{
+  height: calc(100% - 78px);
+  display: grid;
+  grid-template-columns: 1fr; /* Apenas uma coluna */
+  grid-template-rows: 1fr auto; /* A primeira e terceira linhas têm altura automática, a segunda ocupa o restante */
+  gap: 10px; /* Espaçamento entre as linhas */
+}
+
 .item-product {
   background: var(--color-white);
   display: flex;
@@ -22,7 +30,7 @@
   img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
   }
 }
 
@@ -91,7 +99,7 @@
 }
 
 .btn-buy {
-  padding: 10px 15px;
+  padding: 15px 25px;
   border: 2px solid transparent;
   border-radius: 7px;
   background: var(--color-black);
