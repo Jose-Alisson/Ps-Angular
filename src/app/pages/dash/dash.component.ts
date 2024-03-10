@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, ElementRef, ViewChild, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { SideBarComponent } from '../../shared/comps/side-bar/side-bar.component';
@@ -19,6 +19,10 @@ import { CartComponent } from '../../shared/comps/cart/cart.component';
   ],
 })
 export class DashComponent {
+
+  @ViewChild('searchEspaded')
+  private searchEspaded?: ElementRef<HTMLDivElement>
+
   private router = inject(Router);
   private form = inject(FormBuilder);
 
@@ -31,6 +35,8 @@ export class DashComponent {
           s: this.searchControl.value,
         },
       });
+
+        this.searchEspaded?.nativeElement?.classList?.remove('active')
     }
   }
 }

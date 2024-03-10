@@ -2,7 +2,7 @@
   <div class="side-left">
     <div class="preview">
       <div class="item-img-preview">
-        <img src="../../../assets/20-2.png" alt="" />
+        <img [src]="item.photoObj" alt="" />
       </div>
       <div class="slider-image">
         @for(item of [1,2,3,4];track $index){
@@ -14,31 +14,30 @@
     </div>
   </div>
   <div class="side-right">
-    <h2 class="title">{{ "Produto" }}</h2>
+    <h2 class="title">{{ item.productName }}</h2>
     <p class="item-description">
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis
-      molestias nam cupiditate odio voluptas tenetur nemo culpa accusamus velit,
-      laudantium distinctio quo tempora quidem optio officiis provident vero
-      expedita ea.
+      {{item.description}}
     </p>
     <div class="line"></div>
-    <h1 class="price">{{ 0 | currency : "BRL" : "symbol-narrow" }}</h1>
+    <h1 class="price">{{ item.price | currency : "BRL" : "symbol-narrow" }}</h1>
     <div class="amount">
-      <div class="decrement" (click)="({})">
+      <div class="decrement" (click)="decrement()">
         <i class="fi fi-rr-caret-left"></i>
       </div>
       <div class="counter">
-        <p>{{ 1 }}</p>
+        <p>{{ counter }}</p>
       </div>
-      <div class="increment" (click)="({})">
+      <div class="increment" (click)="increment()">
         <i class="fi fi-rr-caret-right"></i>
       </div>
     </div>
     <div class="btns">
-      <button class="btn-buy">Adicionar ao Carrinho</button>
+      <button class="btn-buy" (click)="addToCart()">Adicionar ao Carrinho</button>
     </div>
     <div class="line"></div>
   </div>
+</section>
+<section class="item-description">
 </section>
 <section class="result">
   <h1>Você também pode gostar</h1>

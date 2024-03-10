@@ -1,24 +1,24 @@
 <app-side-bar #side [side]="'right'">
   <div class="content">
     <div class="list-items">
-      @for(item of [1,2,3]; track $index){
+      @for(item of amounts; track $index){
       <div class="item-product">
         <div class="item-view">
           <img src="../../../../assets/20-2.png" />
         </div>
         <div class="item-description">
-          <h3>{{ "Product" }}</h3>
+          <h3>{{ item.product?.productName }}</h3>
           <p>{{ "description" }}</p>
           <div class="unique">
-            <h4>{{ 0 | currency : "BRL" : "symbol-narrow" }}</h4>
+            <h4>{{ item.product?.basePrice | currency : "BRL" : "symbol-narrow" }}</h4>
             <div class="amount">
-              <div class="decrement" (click)="({})">
+              <div class="decrement" (click)="decrement(item.id)">
                 <i class="fi fi-rr-caret-left"></i>
               </div>
               <div class="counter">
-                <p>{{ 1 }}</p>
+                <p>{{ item.quantity }}</p>
               </div>
-              <div class="increment" (click)="({})">
+              <div class="increment" (click)="increment(item.id)">
                 <i class="fi fi-rr-caret-right"></i>
               </div>
             </div>
@@ -38,10 +38,10 @@
       <div class="subtotal">
         <div class="message">
           <span>Sub-Total</span>
-          <p>{{ 0 }} {{ "item" }}</p>
+          <p>{{ amounts.length }} {{ amounts.length == 1 ? "item" : "items" }}</p>
         </div>
         <div class="value">
-          <h3>{{ 0 | currency : "BRL" : "symbol-narrow" }}</h3>
+          <h3>{{ getSubTotal() | currency : "BRL" : "symbol-narrow" }}</h3>
         </div>
       </div>
       <button class="btn-buy" (click)="(0)">Comprar</button>

@@ -9,6 +9,10 @@ section {
   margin: auto;
 }
 
+section:not(:last-child){
+  margin-bottom: 2em;
+}
+
 .container {
   display: flex;
   gap: 2em;

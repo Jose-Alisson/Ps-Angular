@@ -27,6 +27,9 @@ section.menu {
 
   .item {
     cursor: pointer;
+    //animation: reactive 0.2s ease;
+    //opacity: 0;
+    //animation-timeline: view();
 
     .item-preview {
       background: #181818;
@@ -57,6 +60,16 @@ section.menu {
         text-overflow: ellipsis;
       }
     }
+  }
+}
+
+@keyframes reactive {
+  from {
+    opacity: 0;
+  }
+
+  to{
+    opacity: 1;
   }
 }
 

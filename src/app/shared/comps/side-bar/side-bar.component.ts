@@ -23,4 +23,8 @@ export class SideBarComponent {
   getSide(){
     return this.side
   }
+
+  setActive(active: boolean){
+    this.active = active
+  }
 }
