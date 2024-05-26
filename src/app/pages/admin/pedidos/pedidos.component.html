@@ -1,0 +1,187 @@
+<app-side-bar [side]="'left'" #side>
+    @for (status of getListStatus(); track $index) {
+    <div class="orders" [ngClass]="status">
+        @for (item of getOrdersByStatus(status); track $index) {
+        <div class="order" (click)="order = item">
+            <h5>{{item?.dateCreation | date: 'dd/MM/yyyy - hh:mm a'}}</h5>
+            <h3>{{item?.account?.name}}</h3>
+            <div class="subtotal">
+                <div class="message">
+                    <span>Sub-Total</span>
+                    <p>{{ item.amounts.length }} {{ item.amounts.length == 1 ? "item" : "items" }}</p>
+                </div>
+                <div class="value">
+                    <h3>{{ getTotal(item) | currency : "BRL" : "symbol-narrow" }}</h3>
+                </div>
+            </div>
+        </div>
+        }
+    </div>
+    }
+</app-side-bar>
+
+<ng-template #select>
+    <div class="menu">
+        <div class="side-right">
+            @if (order) {
+            <div class="card" [ngClass]="order.status">
+                <div class="status">
+                    {{order?.status}}
+                </div>
+                <div class="btns">
+                    <div class="btn"><i class="fi fi-rr-pencil"></i> Editar</div>
+                    <div class="btn"><i class="fi fi-rr-print"></i> Imprimir</div>
+                </div>
+                <h3>{{order?.dateCreation | date : 'dd/MM/yyyy - hh:mm a'}}</h3>
+                <div class="list-items">
+                    @for(item of order?.amounts; track $index){
+                    <div class="item-product">
+                        <div class="item-view">
+                            <img src="../../../../assets/20-2.png" />
+                        </div>
+                        <div class="item-description">
+                            <h3>{{ item.product?.productName }}</h3>
+                            <p class="descri">{{ item?.productAttributes?.length > 0 ?
+                                getAttributeList(item?.productAttributes)
+                                : "description" }}</p>
+                            <div class="unique">
+                                <h4>{{ (getAmountValue(item) / item.quantity) | currency : "BRL" : "symbol-narrow" }}
+                                </h4>
+                                <div class="amount">
+                                    <!-- <div class="decrement" (click)="decrement(item.id)">
+                                      <i class="fi fi-rr-caret-left"></i>
+                                    </div> -->
+                                    <div class="counter">
+                                        <p>{{ item.quantity }}</p>
+                                    </div>
+                                    <!-- <div class="increment" (click)="increment(item.id)">
+                                      <i class="fi fi-rr-caret-right"></i>
+                                    </div> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    }
+                </div>
+                @if (order?.address; as address) {
+                <div class="address">
+                    <h3>{{address?.street}}</h3>
+                    @if (address?.zipCode; as cep) {
+                    <h5>Cep: {{cep | mask : '00000-000'}}</h5>
+                    }
+                    @if (address?.houseNumber; as houseNumber) {
+                    <h5>Número da residencia: {{houseNumber}}</h5>
+                    }
+                </div>
+                }
+                <div class="pay">
+                    @if (order?.typePay; as pagamento) {
+                    <h3>{{pagamento}}</h3>
+                    }@else {
+                    <h4>Pagemento não especificado</h4>
+                    }
+                </div>
+                <div class="subtotal">
+                    <div class="message">
+                        <span>Total</span>
+                        <p>{{ order?.amounts?.length }} {{ order?.amounts?.length == 1 ? "item" : "items" }}</p>
+                    </div>
+                    <div class="value">
+                        <h3>{{ getTotal(order) | currency : "BRL" : "symbol-narrow" }}</h3>
+                    </div>
+                </div>
+            </div>
+            } @else {
+            <div class="not-selected">
+                <img src="../../../../assets/Order ahead-pana.svg" alt="">
+                <h2>Nenhum pedido selecionado</h2>
+            </div>
+            }
+        </div>
+    </div>
+</ng-template>
+<ng-template #register>
+    <div class="register-container">
+        <div class="side-left">
+            <div class="search">
+                <div class="icon">
+                    <i class="fi fi-rr-search"></i>
+                </div>
+                <input type="text" placeholder="Pesquisar" (keyup)="search($event)" [formControl]="searchControl" />
+            </div>
+            <br>
+            @if (searchText) {
+            <div class="result-items">
+                @for (item of products; track $index) {
+                <app-product [item]="item" (product)="addToSelected($event)"></app-product>
+
+                }@empty {
+                <div class="is-empty">
+                    <img src="../../../../assets/Empty-pana.svg" alt="">
+                    <h2>Infelismente não encontramos oque deseja! </h2>
+                </div>
+                }
+            </div>
+            }@else {
+            <div class="is-search">
+                <img src="../../../../assets/Search engines-bro.svg" alt="">
+                <h2>Procure oque deseja</h2>
+            </div>
+            }
+        </div>
+
+        <div class="side-right" style="font-size: 80%;">
+            <div class="right-content">
+                <app-dropdown [title]="'Status'" [options]="['CRIADO', 'PREPARANDO']" ></app-dropdown>
+                @for (item of amounts; track $index) {
+                <div class="item-product">
+                    <div class="item-view">
+                        <img src="../../../../assets/20-2.png" />
+                    </div>
+                    <div class="item-description">
+                        <h3>{{ item.product?.productName }}</h3>
+                        <p class="descri">{{ item?.productAttributes?.length > 0 ?
+                            getAttributeList(item?.productAttributes) : "description" }}</p>
+                        <div class="unique">
+                            <h4>{{ (getAmountValue(item) / item.quantity) | currency : "BRL" : "symbol-narrow" }}</h4>
+                            <div class="amount">
+                                <div class="decrement" (click)="decrement(item)">
+                                    <i class="fi fi-rr-caret-left"></i>
+                                </div>
+                                <div class="counter">
+                                    <p>{{ item.quantity }}</p>
+                                </div>
+                                <div class="increment" (click)="increment(item)">
+                                    <i class="fi fi-rr-caret-right"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                }
+                <app-input [control]="clientOrTable" [title]="'Cliente ou Mesa'"></app-input>
+                <app-delivery></app-delivery>
+                <app-type-pay></app-type-pay>
+                <button style="--color-status: #feca57" class="btn fill">Salvar</button>
+            </div>
+        </div>
+    </div>
+</ng-template>
+
+
+<div class="more">
+    <a (click)="router = 'select';side.setActive(true)">Selecionar</a>
+    <a (click)="router = 'register'">Cadastrar</a>
+</div>
+
+@switch (router) {
+@case ('select') {
+<ng-container *ngTemplateOutlet="select"></ng-container>
+}
+@case ('register') {
+<ng-container *ngTemplateOutlet="register"></ng-container>
+}
+@default {
+<ng-container *ngTemplateOutlet="select"></ng-container>
+}
+}

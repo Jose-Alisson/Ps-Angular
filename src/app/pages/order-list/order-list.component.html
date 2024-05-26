@@ -1,0 +1,68 @@
+<div class="cards">
+    @for (order of orders; track $index) {
+    <div class="card" [ngClass]="order.status">
+        <div class="status">
+            {{order?.status}}
+        </div>
+        <h3>{{order?.dateCreation | date : 'dd/MM/yyyy - hh:mm a'}}</h3>
+        <div class="list-items">
+            @for(item of order?.amounts; track $index){
+            <div class="item-product">
+                <div class="item-view">
+                    <img src="../../../../assets/20-2.png" />
+                </div>
+                <div class="item-description">
+                    <h3>{{ item.product?.productName }}</h3>
+                    <p class="descri">{{ item?.productAttributes?.length > 0 ? getAttributeList(item?.productAttributes)
+                        : "description" }}</p>
+                    <div class="unique">
+                        <h4>{{ (getAmountValue(item) / item.quantity) | currency : "BRL" : "symbol-narrow" }}</h4>
+                        <div class="amount">
+                            <!-- <div class="decrement" (click)="decrement(item.id)">
+                          <i class="fi fi-rr-caret-left"></i>
+                        </div> -->
+                            <div class="counter">
+                                <p>{{ item.quantity }}</p>
+                            </div>
+                            <!-- <div class="increment" (click)="increment(item.id)">
+                          <i class="fi fi-rr-caret-right"></i>
+                        </div> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            }
+        </div>
+        @if (order?.address; as address) {
+        <div class="address">
+            <h3>{{address?.street}}</h3>
+            @if (address?.zipCode; as cep) {
+            <h5>Cep: {{cep | mask : '00000-000'}}</h5>
+            }
+            @if (address?.houseNumber; as houseNumber) {
+            <h5>Número da residencia: {{houseNumber}}</h5>
+            }
+        </div>
+        }
+        <div class="pay">
+            @if (order?.typePay; as pagamento) {
+                <h3>{{pagamento}}</h3>
+            }@else {
+                <h4>Pagemento não especificado</h4>
+            }
+        </div>
+        <div class="subtotal">
+            <div class="message">
+              <span>Total</span>
+              <p>{{ order?.amounts?.length }} {{ order?.amounts?.length == 1 ? "item" : "items" }}</p>
+            </div>
+            <div class="value">
+              <h3>{{ getTotal(order) | currency : "BRL" : "symbol-narrow" }}</h3>
+            </div>
+          </div>
+    </div>
+    }
+</div>
+
+
+<!-- <button (click)="send('hello')">Enviar</button> -->

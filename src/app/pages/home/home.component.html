@@ -42,14 +42,12 @@
     conferir nosso cardápio completo e descubra uma variedade deliciosa que vai
     além dos destaques mencionados.
   </p>
-  <a style="text-align: center; font-style: italic; color: #feca57" [routerLink]="['/d/menu']" >Veja o Cardápio Completo</a
-  >
+  <a style="text-align: center; font-style: italic; color: #feca57" [routerLink]="['/d/menu']">Veja o Cardápio
+    Completo</a>
 </section>
 <section class="how-request" id="request">
   <h1>
-    <span class="marked-light" style="background: #060606; color: #feca57"
-      >Faça Seu Pedido</span
-    >
+    <span class="marked-light" style="background: #060606; color: #feca57">Faça Seu Pedido</span>
   </h1>
   <ul>
     <li>
@@ -76,7 +74,12 @@
       Antes de fazer seu pedido, verifique se oferecemos entrega na sua área.
       Insira seu CEP abaixo para confirmar:
     </p>
-    <app-cep></app-cep>
+    <app-cep #cep></app-cep>
+    <div style="display: flex; flex-direction: column;gap: 1em;">
+      <ng-container *ngTemplateOutlet="cep.searchCep"></ng-container>
+      <ng-container *ngTemplateOutlet="cep.viewCepInformation"></ng-container>
+    </div>
+
   </div>
 </section>
 <section class="opening-hours">
@@ -121,9 +124,7 @@
         <div class="box-title">Redes Sociais</div>
         <ul>
           <li>
-            <a href="https://www.instagram.com/pizzaria.sapucaians/"
-              >Instagram</a
-            >
+            <a href="https://www.instagram.com/pizzaria.sapucaians/">Instagram</a>
           </li>
         </ul>
       </div>

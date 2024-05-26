@@ -50,7 +50,7 @@ export class MenuComponent implements OnInit {
         });
       } else {
         this.productS
-          .getByOffSet('467ef5a8-a298-416c-afb7-d3d6e0a02f7d', 0)
+          .getByOffSet('d53b9740-bd2c-4188-a1d6-0bd1321c0b2f', 0)
           .subscribe({next: (products) => {
             this.result = products;
             this.result$ = new Observable((obs) => {
@@ -87,7 +87,7 @@ export class MenuComponent implements OnInit {
 
   find24Result() {
     this.productS
-      .getByOffSet('467ef5a8-a298-416c-afb7-d3d6e0a02f7d', this.index)
+      .getByOffSet('d53b9740-bd2c-4188-a1d6-0bd1321c0b2f', this.index)
       .subscribe((data) => {
         this.result = data;
         this.result$ = new Observable((obs) => {
@@ -96,3 +96,4 @@ export class MenuComponent implements OnInit {
       });
   }
 }
+

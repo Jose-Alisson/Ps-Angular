@@ -10,6 +10,11 @@
       <h2>Cardápio</h2>
       &nbsp;
     </li>
+    <li [routerLink]="['./orderList']" routerLinkActive="active">
+      <i class="fi fi-rr-ballot-check"></i>
+      <h2>Pedidos</h2>
+      &nbsp;
+    </li>
   </ul>
 </app-side-bar>
 <app-cart #cart ></app-cart>
@@ -27,6 +32,7 @@
     <ul>
       <li [routerLink]="['./home']">Inicio</li>
       <li [routerLink]="['./menu']">Cardápio</li>
+      <li [routerLink]="['./orderList']">Pedidos</li>
     </ul>
     <div class="nav-actions">
       <div class="search">

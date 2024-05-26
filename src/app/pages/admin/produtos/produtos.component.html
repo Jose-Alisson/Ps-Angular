@@ -1,0 +1,171 @@
+<ng-template #form>
+    <div class="form" style="display: flex;flex-direction: column;gap: 20px;">
+        <section class="container">
+            <div class="side-left">
+                <div class="file-img-preview">
+                    <div class="item-img-preview drag-drop" *ngIf="!productImagePreview; else imageView"
+                        (dragover)="onDragOver($event)" (drop)="onDrop($event)">
+                        <input type="file" id="input-file-image" (change)="onFileSelected($event)" />
+                        <div style="display: flex; justify-content: center;">
+                            <i class="fi fi-rr-cloud-upload-alt" style="font-size: 42px;"></i>
+                        </div>
+                        <h1>Arraste e solte uma imagem aqui</h1>
+                    </div>
+                    <ng-template #imageView>
+                        <label for="input-file-image" class="btn">Selecionar outra imagem</label>
+                        <div class="item-img-preview">
+                            <img [src]="productImagePreview" alt="" />
+                            <input type="file" id="input-file-image" (change)="onFileSelected($event)" />
+                        </div>
+                    </ng-template>
+                </div>
+                <div class="slider-image">
+                    @for(item of product?.attributes;track $index){
+                    <div class="slide">
+                        <img [src]="item?.photoObj" alt="" />
+                    </div>
+                    }
+                </div>
+            </div>
+            <div class="side-right">
+                <div class="div">
+                    <app-input [control]="productForm.controls.productName" [title]="'Nome'"
+                        [viewAllError]="viewAllError">
+                        <app-validate [validatorName]="'required'" [message]="'Campo obrigatorio.'"></app-validate>
+                    </app-input>
+                </div>
+                <div class="div">
+                    <app-input [control]="productForm.controls.category" [title]="'Categoria'"
+                        [viewAllError]="viewAllError">
+                        <app-validate [validatorName]="'required'" [message]="'Campo obrigatorio.'"></app-validate>
+                    </app-input>
+                </div>
+                <div class="div">
+                    <app-input [control]="productForm.controls.description" [title]="'Descrição'"
+                        [viewAllError]="viewAllError">
+                        <app-validate [validatorName]="'required'" [message]="'Campo obrigatorio.'"></app-validate>
+                    </app-input>
+                </div>
+                <div class="line"></div>
+                <div class="div">
+                    <app-input [control]="productForm.controls.basePrice" [title]="'Preço'"
+                        [viewAllError]="viewAllError">
+                        <app-validate [validatorName]="'required'" [message]="'Campo obrigatorio.'"></app-validate>
+                    </app-input>
+                </div>
+                <div class="div">
+                    <app-input [control]="productForm.controls.available" [title]="'Disponivel'"
+                        [viewAllError]="viewAllError">
+                        <app-validate [validatorName]="'required'" [message]="'Campo obrigatorio.'"></app-validate>
+                    </app-input>
+                </div>
+
+                <div class="line"></div>
+                <app-attribute [attributes]="product?.attributes ?? []" createAttribute
+                    (attr)="attributes = $event"></app-attribute>
+                <div class="line"></div>
+                <section class="item-form-all-description">
+                    <app-text-area-form [control]="productForm.controls.allDescription" style="width: 100%;">
+                    </app-text-area-form>
+                    <button class="btn btn-fit" (click)="createOrEdit()">{{product ? 'Editar' : 'Cadastrar'}}</button>
+                </section>
+            </div>
+        </section>
+    </div>
+</ng-template>
+
+<ng-template #selectTemp>
+    @if (product; as item) {
+    <div class="btns">
+        <button class="btn fill" (click)="showEdit()">Editar</button>
+        <button class="btn fill" style="--colorize: tomato">Remover</button>
+    </div>
+    <section class="container">
+        <div class="side-left">
+            <div class="preview">
+                <div class="item-img-preview">
+                    <img [src]="item?.photoObj" alt="" />
+                </div>
+                <!-- <div class="slider-image">
+                    @for(item of [1,2,3,4];track $index){
+                    <div class="slide">
+                        <img [src]="'../../../assets/20-2.png'" alt="" />
+                    </div>
+                    }
+                </div> -->
+            </div>
+        </div>
+        <div class="side-right">
+            <h2 class="title">{{ item?.productName }}</h2>
+            <p class="item-description">
+                {{item?.description}}
+            </p>
+            <div class="line"></div>
+            <h1 class="price">{{ item?.basePrice | currency : "BRL" : "symbol-narrow" }}</h1>
+            <div class="line"></div>
+            @if (item.attributes?.length > 0) {
+            <app-attribute [attributes]="item.attributes"></app-attribute>
+            <div class="line"></div>
+            }
+            <div class="line"></div>
+        </div>
+    </section>
+    <section class="item-description">
+    </section>
+    }
+    @else {
+    <div class="not-selected">
+        <img src="../../../../assets/Closed Stores-cuate.svg" alt="">
+        <h2>Nenhum produto selecionado</h2>
+    </div>
+    }
+</ng-template>
+
+<app-modal #modalCreate [title]="'Cadatrar Produto'" [width]="'80vw'">
+    <div class="modal-content" style="padding: 0em 1em 1em 1em;display: flex;flex-direction: column;gap: 10px;">
+        <ng-container *ngTemplateOutlet="form"></ng-container>
+        <button class="btn">Cadastrar</button>
+    </div>
+</app-modal>
+
+<app-side-bar [side]="'left'" #side>
+    @for (item of produtos; track $index) {
+    <div class="item-product" (click)="product = item; side.setActive(false)">
+        <div class="item-view">
+            <img src="../../../../assets/20-2.png" />
+        </div>
+        <div class="item-description">
+            <h3>{{ item?.productName }}</h3>
+            <p class="descri">{{ item?.attributes?.length > 0 ? getAttributeList(item?.productAttributes) :
+                item?.description }}
+            </p>
+            <div class="unique">
+                <h4>{{ item?.basePrice | currency : "BRL" : "symbol-narrow" }}</h4>
+            </div>
+        </div>
+    </div>
+    }
+</app-side-bar>
+
+<div class="more">
+    <a (click)="router = 'select';side.setActive(true)">Selecionar</a>
+    <a (click)="router = 'castrat'; showCreate()">Cadastrar</a>
+</div>
+<div class="menu">
+    <div class="side-right">
+
+        @switch (router) {
+        @case ('select') {
+        <ng-container *ngTemplateOutlet="selectTemp"></ng-container>
+        }
+        @case ('castrat') {
+        <div style="padding: 0em 1em 1em 1em;display: flex;flex-direction: column;gap: 10px;">
+            <ng-container *ngTemplateOutlet="form"></ng-container>
+        </div>
+        }
+        @default {
+        <ng-container *ngTemplateOutlet="selectTemp"></ng-container>
+        }
+        }
+    </div>
+</div>

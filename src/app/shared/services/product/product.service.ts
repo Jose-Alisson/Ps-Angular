@@ -17,6 +17,14 @@ export class ProductService {
 
   constructor() {}
 
+  create(product: any){
+    return this.http.post<any>(`${this.API_URL}/create`, product)
+  }
+
+  update(id: number, product: any){
+    return this.http.put<any>(`${this.API_URL}/${id}/update`, product)
+  }
+
   getById(id: string) {
     return this.http.get<any>(`${this.API_URL}/${id}`).pipe(
       map((product: any) => {
@@ -48,15 +56,15 @@ export class ProductService {
       );
   }
 
-  getSize(establishmentId: string) {
+  getSize() {
     return this.http.get<any>(
-      `${this.API_URL}/size/establishment/${establishmentId}`
+      `${this.API_URL}/size`
     );
   }
 
   getByOffSet(establishmentId: string, offset: number) {
     return this.http.get<any[]>(
-      `${this.API_URL}/establishment/${establishmentId}/${offset}`
+      `${this.API_URL}/offset/${offset}`
     ).pipe(
       map((products: any[]) => {
         return products.map((item) => {

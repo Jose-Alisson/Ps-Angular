@@ -1,0 +1,40 @@
+<div class="container">
+  <!-- <div class="darken">
+    </div> -->
+  <div class="side-left">
+    <img src="../../../../assets/pizzaria text.png" alt="texto pizzaria" id="img_1" />
+    <img src="../../../../assets/Pizza maker-bro.svg" alt="pizzaiolo" id="img_2" />
+  </div>
+  <div class="side-right">
+    <div class="card">
+      <br />
+      <div class="card-header">
+
+        <!--<h1>Bem-vindo a</h1>
+          <h1>Pizzaria Sapucaian's</h1> -->
+      </div>
+      <div class="card-content">
+        <div class="logo">
+          <img src="../../../../assets/logo 03.png" alt="" />
+        </div>
+        <router-outlet></router-outlet>
+        <div class="or-select">
+          <div class="or"></div>
+          <!-- <button type="button" class="login-with-facebook-btn"  (click)="{}">
+              <img src="assets//facebook_logo.png" height="18px" width="18px"/>
+              Login com Facebook
+            </button> -->
+          <button type="button" class="login-with-google-btn" (click)="{}">
+            Login com Google
+          </button>
+          @if (entrar) {
+          <span>Não tenho conta, <a (click)="entrar = false" [routerLink]="['./register']">Me Registrar!</a></span>
+          } @else {
+          <span>Já tenho conta, <a (click)="entrar = true" [routerLink]="['./login']">Entrar</a></span>
+          }
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,24 @@
+<app-modal [title]="'Produto'" #modal>
+    <div class="modal-content">
+        <h2>{{item.productName}}</h2>
+        <div class="line"></div>
+        @if (item?.attributes?.length > 0) {
+        <h3>Attributos</h3>
+        <app-attribute [attributes]="item?.attributes"></app-attribute>
+        }
+        <button class="btn" (click)="product.emit(item)">Adicionar</button>
+    </div>
+</app-modal>
+
+<div class="item" (click)="modal.setActive(true)">
+    <div class="item-preview">
+        <img [src]="item.photoObj" alt="" />
+    </div>
+    <div class="item-content">
+        <h3 class="title">{{ item.productName }}</h3>
+        <p class="description">{{ item.description }}</p>
+        <h3 style="font-weight: 700" class="price">
+            {{ item.basePrice | currency : "BRL" }}
+        </h3>
+    </div>
+</div>

@@ -1,6 +1,8 @@
 .side-header{
   font-size: 48px;
   padding: 15px;
+  position: sticky;
+  top: 0;
 }
 
 .close{
@@ -16,6 +18,11 @@
   height: 100%;
   background: rgba(0, 0, 0, 0.5);
   z-index: 1;
+  transition: 0.2s ease-out;
+
+  &:hover{
+    backdrop-filter: blur(1.5px);
+  }
 }
 
 .side-bar{

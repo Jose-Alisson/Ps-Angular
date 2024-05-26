@@ -1,0 +1,26 @@
+<app-cep [selectAddress]="true" (selectedAddress)="addressData.emit($event)" notViewAddressbyCep #cep></app-cep>
+
+
+<!-- <div class="toggleButton">
+    <h2>Entrega</h2>
+    <br>
+    <!-- <input type="hidden" #option>
+    <div class="actions">
+      <button class="btn ligth" [ngClass]="{'active' : option.value === 'retirada' ? true : false}"
+        (click)="option.value = 'retirada'">Retirada</button>
+      <button class="btn ligth" [ngClass]="{'active' : option.value === 'delivery' ? true : false}"
+        (click)="option.value = 'delivery';">Delivery</button>
+    </div>
+    <div class="results">
+
+    </div> --
+  </div> -->
+
+
+<h2>Selecione a entrega</h2>
+<br>
+<div style="display: flex;gap: 1em; align-items: center;">
+    <ng-container *ngTemplateOutlet="cep.viewCepInformation"></ng-container>
+    <button class="btn ligth fit" (click)="cep.appAdress.modalSelect.setActive(true)">{{cep.result ? 'Mudar' : 'Selecionar endereço'}}</button>
+</div>
+<br>

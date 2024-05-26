@@ -8,9 +8,9 @@
         </div>
         <div class="item-description">
           <h3>{{ item.product?.productName }}</h3>
-          <p>{{ "description" }}</p>
+          <p class="descri">{{ item?.productAttributes?.length > 0 ? getAttributeList(item?.productAttributes) : "description" }}</p>
           <div class="unique">
-            <h4>{{ item.product?.basePrice | currency : "BRL" : "symbol-narrow" }}</h4>
+            <h4>{{ (getAmountValue(item) / item.quantity) | currency : "BRL" : "symbol-narrow" }}</h4>
             <div class="amount">
               <div class="decrement" (click)="decrement(item.id)">
                 <i class="fi fi-rr-caret-left"></i>
@@ -44,7 +44,7 @@
           <h3>{{ getSubTotal() | currency : "BRL" : "symbol-narrow" }}</h3>
         </div>
       </div>
-      <button class="btn-buy" (click)="(0)">Comprar</button>
+      <button class="btn-buy" (click)="buy()">Comprar</button>
     </div>
   </div>
 </app-side-bar>

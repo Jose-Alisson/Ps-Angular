@@ -1,0 +1,7 @@
+:host{
+    --color-background:#242424;
+    --color-text: white;
+    flex-grow: 1;
+}
+
+@import url(../form.scss);

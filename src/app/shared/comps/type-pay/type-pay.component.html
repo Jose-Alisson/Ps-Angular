@@ -1,0 +1,20 @@
+<h2>Selecione a forma de pagamento</h2>
+<ul>
+    <li (click)="togglePay('DINHEIRO');emit()">
+        <span class="radio" [ngClass]="{'active' : isExist('DINHEIRO')}"></span>
+        <span>Dinheiro</span>
+    </li>
+    <li (click)="togglePay('CARTAO');emit()">
+        <span class="radio" [ngClass]="{'active' : isExist('CARTAO')}"></span>
+        <span>Cartão</span>
+    </li>
+    <li (click)="togglePay('PIX');emit()">
+        <span class="radio" [ngClass]="{'active' : isExist('PIX')}"></span>
+        <span>Pix</span>
+    </li>
+</ul>
+
+@if (isExist('DINHEIRO')) {
+<app-input [control]="trocoControl" [title]="'troco para'" [prefix]="'R$ '" [required]="false" [mask]="getTrocoMask()"
+    [especialCharacters]="[',']"></app-input>
+}

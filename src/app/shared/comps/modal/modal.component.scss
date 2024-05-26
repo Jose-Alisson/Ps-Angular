@@ -1,0 +1,58 @@
+:host{
+    max-width: 100vw;
+    max-height: 100vh;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+}
+
+.modal-header {
+    font-size: 1.8rem;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    color: white;
+    align-items: center;
+    gap: 30px;
+}
+
+.close {
+    color: white;
+    font-size: 48px;
+}
+
+.fade {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    transition: 0.5s;
+    backdrop-filter: blur(1px);
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+.modal {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    overflow-y: auto;
+    position: fixed;
+    background: #181818;
+    transition: 0.2s;
+    max-height: 90vh;
+    border-radius: 7px;
+    z-index: 1;
+    width: 500px;
+    max-width: 90vw;
+
+    &::-webkit-scrollbar {
+        height: 3px;
+        width: 3px;
+    }
+}
+
+.modal-content{
+    color: white;
+}

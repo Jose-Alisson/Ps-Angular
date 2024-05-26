@@ -1,0 +1,87 @@
+.modal-content{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 0px 15px 15px 15px;
+}
+
+.btn {
+    gap: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 7px;
+    padding: 10px 15px;
+    border: 2px solid transparent;
+    background: #feca57;
+    transition: 0.2s;
+    color: #060606;
+
+    &:hover {
+        background: #feca57;
+        color: #060606;
+    }
+}
+
+.ligth{
+    background: transparent;
+    border: 2px solid #feca57;
+    color: #feca57;
+}
+
+.fill{
+    color: #feca57;
+    background: color-mix(in srgb, #feca57 25%, transparent);
+}
+
+.btn-fit {
+    width: fit-content;
+}
+
+.cards-slt{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-height: 350px;
+    overflow-y: auto;
+    overflow-x: visible;
+    padding: 8px 2px;
+
+    &::-webkit-scrollbar{
+        width: 5px;
+        height: 5px;
+    }
+
+
+    &::-webkit-scrollbar-thumb{
+        background-color: #242424;
+    }
+}
+
+.card-slt{
+    color: white;
+    background: #242424;
+    padding: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    transition: 0.2s;
+
+    &:hover{
+        transform: scale(95%);
+        //box-shadow: 0px 0px 0px 5px #242424, 0px 0px 0px 8px #feca57;
+    }
+
+    &.active{
+        transform: scale(95%);
+        box-shadow: 0px 0px 0px 5px #242424, 0px 0px 0px 8px #feca57;
+    }
+}
+
+.maps{
+    height: 120px;
+    border-radius: 7px;
+    background-position: center;
+    background-size: cover;
+    background-image: url(../../../../assets/maps.jpg);
+}

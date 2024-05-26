@@ -2,24 +2,24 @@
   <div class="side-left">
     <div class="preview">
       <div class="item-img-preview">
-        <img [src]="item.photoObj" alt="" />
+        <img src="../../../assets/20-2.png" alt="" />
       </div>
       <div class="slider-image">
-        @for(item of [1,2,3,4];track $index){
+        <!-- @for(item of [];track $index){
         <div class="slide">
           <img [src]="'../../../assets/20-2.png'" alt="" />
         </div>
-        }
+        } -->
       </div>
     </div>
   </div>
   <div class="side-right">
-    <h2 class="title">{{ item.productName }}</h2>
+    <h2 class="title">{{ item?.productName }}</h2>
     <p class="item-description">
-      {{item.description}}
+      {{item?.description}}
     </p>
     <div class="line"></div>
-    <h1 class="price">{{ item.price | currency : "BRL" : "symbol-narrow" }}</h1>
+    <h1 class="price">{{ item?.basePrice | currency : "BRL" : "symbol-narrow" }}</h1>
     <div class="amount">
       <div class="decrement" (click)="decrement()">
         <i class="fi fi-rr-caret-left"></i>
@@ -31,6 +31,11 @@
         <i class="fi fi-rr-caret-right"></i>
       </div>
     </div>
+    <div class="line"></div>
+    @if (attributes.length > 0) {
+    <app-attribute [attributes]="attributes"></app-attribute>
+    <div class="line"></div>
+    }
     <div class="btns">
       <button class="btn-buy" (click)="addToCart()">Adicionar ao Carrinho</button>
     </div>
@@ -60,3 +65,4 @@
     }
   </div>
 </section>
+<br>

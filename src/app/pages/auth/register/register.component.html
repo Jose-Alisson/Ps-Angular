@@ -1,0 +1,67 @@
+<div class="container">
+    <h1>Registrar-se</h1>
+    <div class="select-steps">
+      <div class="step-group">
+        <input type="radio" name="stp" id="stp-1" checked/>
+        <input type="radio" name="stp" id="stp-2" />
+        <input type="radio" name="stp" id="stp-3" />
+        <input type="radio" name="stp" id="stp-4" />
+        <div class="step first" >
+          <app-input [control]="step1Form.controls.email" [title]="'Email'" style="--color-background: white; --color-text: black" [viewAllError]="allErrorVisibleForm">
+            <app-validate [validatorName]="'required'" [message]="'O campo é obrigatorio.'"></app-validate>
+            <app-validate [validatorName]="'email'" [message]="'Email invalido.'"></app-validate>
+            <app-validate [validatorName]="'alreadyExists'" [message]="'Endereço de E-mail já está em uso.'"></app-validate>
+          </app-input>
+          <app-input [control]="step1Form.controls.password" [title]="'password'" style="--color-background: white; --color-text: black" [viewAllError]="allErrorVisibleForm">
+            <app-validate [validatorName]="'required'" [message]="'O campo é obrigatorio.'"></app-validate>
+            <app-validate [validatorName]="'minlength'" [message]="'Sua senha deve ter no mínimo 6 caracteres.'"></app-validate>
+          </app-input>
+          <br>
+          <div class="buttons-controll" style="width: 100%;" *ngIf="count < 4">
+            <button class="btn-prosseguir" (click)="prosseguirIsValidForm1()">Prosseguir</button>
+          </div>
+        </div>
+        <div class="step">
+          <app-input [control]="step2Form.controls.nome" [title]="'Nome'" style="--color-background: white; --color-text: black" [viewAllError]="allErrorVisibleForm">
+            <app-validate [validatorName]="'required'" [message]="'O campo é obrigatorio.'"></app-validate>
+            <app-validate [validatorName]="'minlength'" [message]="'O seu nome deve ter pelo menos 2 caracteres.'"></app-validate>
+          </app-input>
+          <br>
+          <div class="buttons-controll" style="width: 100%;" *ngIf="count < 4">
+            <button class="btn-prosseguir" (click)="prosseguirIsValidForm2()">Prosseguir</button>
+            <button class="btn-voltar" (click)="voltar()">Voltar</button>
+          </div>
+        </div>
+        <div class="step">
+            <app-input [control]="step3Form.controls.contato" [title]="'Número de Whatsapp'" style="--color-background: white; --color-text: black" [mask]="'0000-0000'" [especialCharacters]="['-']" showTyped>
+              <app-validate [validatorName]="'required'" [message]="'O campo é obrigatorio.'"></app-validate>
+              <app-validate [validatorName]="'invalidInput'" [message]="'Número invalido.'"></app-validate>
+            </app-input>
+            <!-- <div class="buttons-controll" style="width: 100%;" *ngIf="count < 4">
+              <button [disabled]="step3Form.invalid" class="btn-enviar-code" (click)="enviarCode()">Enviar para Whatsapp</button>
+            </div> -->
+            <br>
+            <div class="buttons-controll" style="width: 100%;">
+              <button class="btn-prosseguir" [disabled]="step3Form.invalid" (click)="create()">Pronto</button>
+            <button class="btn-voltar" (click)="voltar()">Voltar</button>
+            </div>
+        </div>
+        <div class="step status-create">
+          <img id="img-status-create" src="../../../../assets/checked.gif" width="128px">
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- <div class="show-code-verify" *ngIf="getShowViewDarken()">
+    <div class="show-code-header">
+      <img src="../../../../assets/phone.svg" alt="">
+      <h2>Código de Verificação</h2>
+      <p>Verifique o código enviado para seu Whastapp de número +55 {{step3Form.controls.contato.value ?? '' | mask : contatoMask}}</p>
+    </div>
+    <div class="code-fields" [ngClass]="{'code-invalid': codeInvalid}">
+      <input type="text" mask="9" *ngFor="let char of codeLength; let i = index" (keyup)="moveFocus($event, i);" [ngClass]="{'filled': getFilled(i)}" [(ngModel)]="chars[i]">
+    </div>
+    <div class="show-code-control">
+    </div>
+    <button (click)="verificarCode()">Verificar</button>
+  </div> -->

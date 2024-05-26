@@ -1,0 +1,154 @@
+<!-- <h1 class="page-title">Meu Carrinho <i class="fi fi-rr-shopping-cart"></i></h1> -->
+<!-- <div class="list-products" *ngFor="let items of getAllDateProducts()">
+    <div class="control-cart">
+      <div class="checked" (click)="checkedAll(items, check.checked)">
+        <input type="checkbox" name="" id="" #check [checked]="isCheckAllActiveDate(items)"/>
+        <span>Tudo</span>
+      </div>
+      <span>{{ items | date : "dd/MM/yyyy" }}</span>
+    </div>
+    <div class="items-product">
+      <div class="item-product" *ngFor="let item of getAllProductFromDate(items)">
+        <input type="checkbox" name="" id="" [checked]="item.checked" #checkItem (click)="item.checked = checkItem.checked; printObject(item)"/>
+        <div class="item-view">
+          <img src="../../../assets/luluzinho.jpg" />
+        </div>
+        <div class="item-description">
+          <h3>{{ item.product.productName }}</h3>
+          <p>{{ item.product.description }}</p>
+          <div class="unique">
+            <h3>{{ item.product.price | currency : "BRL" : "symbol-narrow" }}</h3>
+            <div class="amount">
+              <div class="decrement" (click)="decrement(item)">
+                <i class="fa-solid fa-minus"></i>
+              </div>
+              <div class="counter">
+                <p>{{ item.amount }}</p>
+              </div>
+              <div class="increment" (click)="increment(item)">
+                <i class="fa-solid fa-plus"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> -->
+<!-- <div class="steps">
+  <ul>
+    <li>
+      <span>1</span>
+      <p>Verifique os Produtos</p>
+    </li>
+    <li>
+      <span>2</span>
+      <p>Informe o endereço</p>
+    </li>
+    <li>
+      <span>3</span>
+      <p>Informe o pagamento</p>
+    </li>
+  </ul>
+</div> -->
+<div class="table-tools">
+  <div class="table-content">
+    <table>
+      <thead>
+        <tr>
+          <th class="minimize">#</th>
+          <!-- <th>id</th> -->
+          <th></th>
+          <th>Produto</th>
+          <th></th>
+          <th class="text-center minimize">Preço</th>
+          <!-- <th>Categoria</th> -->
+          <th class="text-center">Quantidade</th>
+          <th>Subtotal</th>
+          <th class="text-center">Excluir</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <tr class="centralize" *ngFor="let p of getAllProductFromCart(); let i = index">
+          <td class="minimize"><span attr-data="#">{{i}}</span></td>
+          <!-- <td><span attr-data="id">{{p.product.id}}</span></td> -->
+          <td>
+            <div class="product-view">
+              <!-- <img [src]="p.product.photoObject" height="70px"> -->
+              <img src="../../../assets/20-2.png" height="70px">
+            </div>
+          </td>
+          <td><span attr-data="Produto">{{p.product.productName}}</span></td>
+          <td><span attr-data="Descrição"
+              style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis; display: block;"
+              [ngClass]="{'max' : !(p?.productAttributes?.length > 0)}">{{p?.productAttributes?.length > 0 ?
+              getProductSelectedAttribute(p.productAttributes) : p.product.description}}</span></td>
+          <td class="minimize"><span attr-data="Preço" class="text-center super-text">{{(getTotalAmount(p) /
+              p.quantity)| currency: 'BRL' : 'symbol-narrow'}}</span></td>
+          <td>
+            <span attr-data="Quantidade">
+              <div class="amount text-center" style="justify-content: center;">
+                <div class="decrement" (click)="decrement(p)">
+                  <i class="fa-solid fa-minus"></i>
+                </div>
+                <div class="counter">
+                  <p>{{ p?.quantity }}</p>
+                </div>
+                <div class="increment" (click)="increment(p)">
+                  <i class="fa-solid fa-plus"></i>
+                </div>
+              </div>
+            </span>
+          </td>
+          <td class="super-text">{{getTotalAmount(p) | currency: 'BRL' : 'symbol-narrow'}}</td>
+          <td class="text-center">
+            <i (click)="delete(p.id)" style="padding: 10px 15px;" class="fi fi-rr-trash-xmark"></i>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="1"></td>
+          <td colspan="3" style="text-align: start;">
+            <br>
+            <div style="display: flex;flex-direction: column;gap: 1em;">
+              <app-delivery #delivery (addressData)="addressData = $event;"></app-delivery>
+              <app-type-pay [valorTotal]="getAllTotalAmountCheck()" (typePayEmmiter)="typePay = $event"></app-type-pay>
+            </div>
+          </td>
+        </tr>
+        <!-- <tr>
+            <td colspan="1"></td>
+            <td colspan="2">
+              <h2>Forma de pagamento</h2>
+              <ul>
+                <li>Pix</li>
+                <li>Cartão</li>
+              </ul>
+            </td>
+          </tr> -->
+        <tr>
+          <td colspan="6"></td>
+          <td colspan="2" style="justify-content: flex-end;">
+            <div class="line-information-table">
+              <div class="line-subtotal">
+                <span>Total: </span>
+                <span class="value-total">{{getAllTotalAmountCheck() | currency: 'BRL' : 'symbol-narrow'}}</span>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <!-- <div class="line-information-table">
+      <div class="line-subtotal">
+        <span>Subtotal</span>
+
+      </div>
+    </div> -->
+</div>
+<div class="line-information">
+  <div class="line-action" style="justify-content: flex-end;">
+    <a [routerLink]="['/m/buscar']">Continuar comprando</a>
+    <button (click)="finalizarComprar()"><i class="fi fi-rr-check"></i> Finalizar Comprar</button>
+  </div>
+</div>

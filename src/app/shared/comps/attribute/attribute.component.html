@@ -1,1 +1,55 @@
-<p>attribute works!</p>
+<app-modal [title]="'Criar atributo'" #modalCreate>
+    <div class="modal-content">
+        <app-input [control]="attributeForm.controls.attributeName" [title]="'Nome'" [viewAllError]="viewAllError">
+            <app-validate [validatorName]="'required'" [message]="'O campo é obrigatório. '"></app-validate>
+        </app-input>
+        <app-input [control]="attributeForm.controls.attributePrice" [title]="'Preço'" [mask]="'000'" [viewAllError]="viewAllError">
+            <app-validate [validatorName]="'required'" [message]="'O campo é obrigatório. '"></app-validate></app-input>
+        <app-input [control]="attributeForm.controls.available" [title]="'disponivel'" [viewAllError]="viewAllError">
+            <app-validate [validatorName]="'required'" [message]="'O campo é obrigatório. '"></app-validate>
+        </app-input>
+        <button class="btn" (click)="adicionar();">Adicionar</button>
+    </div>
+</app-modal>
+
+<app-modal [title]="'Remover atributo'" #modalRemover>
+    <div class="modal-content">
+
+    </div>
+</app-modal>
+
+@if (createAttribute()) {
+<div class="btns" style="display: flex;gap: 10px;">
+    <button class="btn fill" (click)="modalCreate.setActive(true)">Criar atributo</button>
+    <!-- <button class="btn ligth" (click)="modalRemover.setActive(true)">Remover atributo</button> -->
+</div>
+}
+
+<div class="attributes">
+    @for (item of attributes(); track $index) {
+    <div class="attribute">
+        <div class="text">
+            <p style="font-weight: 600;">{{item?.attributeName}}</p>
+            <p style="color: #feca57;">{{item?.attributePrice | currency : 'BRL'}}</p>
+        </div>
+        @if (!createAttribute()) {
+        <div class="amount">
+            <div class="decrement" (click)="decrement(item)">
+                <i class="fi fi-rr-caret-left"></i>
+            </div>
+            <div class="counter">
+                <p style="font-weight: 600;">
+                    <!-- {{ item?.counter }} -->
+                    {{isContains(item) ? 1 : 0}}
+                </p>
+            </div>
+            <div class="increment" (click)="increment(item)">
+                <i class="fi fi-rr-caret-right"></i>
+            </div>
+        </div>
+        }@else {
+            <button class="btn ligth" style="--colorize: tomato" (click)="removeInAttributes(item)">Remover</button>
+        }
+    </div>
+    }
+</div>

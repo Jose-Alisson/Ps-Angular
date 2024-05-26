@@ -1,7 +1,41 @@
-<div class="cep-form">
-  <div class="field">
-    <input type="text" placeholder="Cep" mask="00000-000" [showMaskTyped]="true" [specialCharacters]="['-']">
-    <i class="fa-regular fa-envelope"></i>
+<app-address #appAdress (addressSelectedEmmiter)="select($event)"></app-address>
+
+<ng-template #searchCep>
+  <div class="cep-form">
+    <div class="field">
+      <input type="text" placeholder="Cep" mask="00000-000" [showMaskTyped]="true" [specialCharacters]="['-']"
+        [formControl]="cepControl">
+      <i class="fa-regular fa-envelope"></i>
+    </div>
+    <button (click)="buscar()">Buscar</button>
   </div>
-  <button>Buscar</button>
-</div>
+</ng-template>
+
+<ng-template #viewCepInformation>
+  @if (result) {
+  <div style="display: flex;flex-direction: column;gap: 15px;">
+    <h2>{{result?.information?.result?.end_address}}</h2>
+    <h3>Distancia {{result?.information?.result?.distance_text}}</h3>
+    @if (result?.is_delivery) {
+    <h3 style="color: #feca57;">{{result?.information?.value}}</h3>
+    }@else {
+    <h3 style="color: #feca57;">Infelismente não entregamos em sua residêcia</h3>
+    }
+  </div>
+  }
+</ng-template>
+
+<ng-template #saveCep>
+  @if (selectAddress()) {
+  @if(!selected){
+  <button class="btn btn-fit">Adicionar aos meus endereços</button>
+  }
+  }
+</ng-template>
+
+<ng-template #viewPrice>
+  <br>
+  <div style="display: flex; flex-direction: column; gap: 20px;">
+    <button class="btn btn-fit" (click)="appAdress.modalSelect.setActive(true)">Selecionar endereço</button>
+  </div>
+</ng-template>

@@ -1,0 +1,42 @@
+:host{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+
+ul{
+    display: flex;
+    //flex-direction: column;
+    gap: 10px;
+}
+
+ul li{
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    min-width: 100px;
+    padding: 10px 15px;
+    border-radius: 7px;
+    flex-grow: 1;
+
+    &:hover{
+        background: #181818;
+    }
+}
+
+.radio{
+    position: relative;
+    display: block;
+    background: #242424;
+    min-width: 15px;
+    min-height: 15px;
+    border-radius: 100%;
+    transition: 0.2s;
+
+    &.active{
+        box-shadow: inset 0px 0px 0px 5px #feca57;
+    }
+}

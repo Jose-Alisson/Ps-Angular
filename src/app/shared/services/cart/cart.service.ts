@@ -32,7 +32,11 @@ export class CartService {
     return this.http.patch<any>(`${this.URL_API}/${id}/decrement`, null)
   }
 
-  byAccountId(id: string){
+  byAccountId(id: string | null){
     return this.http.get<any[]>(`${this.URL_API}/byAccountId/${id}`)
+  }
+
+  byLogged(){
+    return this.http.get<any[]>(`${this.URL_API}/byLogged`)
   }
 }

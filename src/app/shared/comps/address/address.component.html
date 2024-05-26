@@ -1,0 +1,58 @@
+<app-modal [title]="'Selecionar endereço'" #modalSelect>
+  <div class="modal-content">
+    <button class="btn ligth btn-fit" (click)="modalCreate.setActive(true)">Criar endereço</button>
+    <div class="cards-slt">
+      @for (item of userAddresses; track $index) {
+      <div class="card-slt" (click)="addressSelected = item" [ngClass]="{'active': item === addressSelected }">
+        <h3>{{item?.street}}</h3>
+        @if (item?.zipCode; as cep) {
+          <h5>Cep: {{cep | mask : '00000-000'}}</h5>
+        }
+        @if (item?.houseNumber; as houseNumber) {
+          <h5>Número da residencia: {{houseNumber}}</h5>
+        }
+      </div>
+      }
+    </div>
+    @if(userAddresses.length === 0){
+    <img src="../../../../assets/Empty-cuate.svg" height="300px" alt="">
+    <h3 style="text-align: center;">Nenhum endereço salvo</h3>
+    <button class="btn" (click)="modalCreate.setActive(true)">Cadastrar endereço</button>
+    }
+    @if (userAddresses.length > 0) {
+    <button class="btn fill" (click)="selecionar()">{{addressSelected ?   'Concluido' :  ' Selecione um endereço'}}</button>
+    }
+  </div>
+</app-modal>
+
+<app-modal [title]="'Criar endereço'" #modalCreate>
+  <div class="modal-content">
+    <button class="btn ligth btn-fit" (click)="locationAuto()">Localização automatica <i
+        class="fi fi-rr-marker"></i></button>
+
+    @if (!(!!localitation)) {
+    <app-input [control]="addressForm.controls.zipCode" [title]="'cep'" [mask]="'00000-000'" showTyped
+      [especialCharacters]="['-']" #cep>
+      <app-validate [validatorName]="'required'" [message]="'O campo é obrigatorio'"
+        [viewAllError]="viewAllError"></app-validate>
+    </app-input>
+
+    <app-input [control]="addressForm.controls.street" [title]="'Rua'" #street>
+      <app-validate [validatorName]="'required'" [message]="'O campo é obrigatorio'"
+        [viewAllError]="viewAllError"></app-validate>
+    </app-input>
+    }@else {
+      <a class="maps" href="https://www.google.com.br/maps/@{{localitation.lat}},{{localitation.lon}},15z?entry=ttu">
+      </a>
+    }
+    <app-input [control]="addressForm.controls.houseNumber" [title]="'Número da residencia'" #house>
+      <app-validate [validatorName]="'required'" [message]="'O campo é obrigatorio'"
+        [viewAllError]="viewAllError"></app-validate>
+    </app-input>
+
+    <app-text-area-form [control]="addressForm.controls.complement" [title]="'Complemento'" [required]="false">
+    </app-text-area-form>
+
+    <button class="btn fill" (click)="create()">Concluido</button>
+  </div>
+</app-modal>

@@ -1,0 +1,12 @@
+@if (active) {
+<div class="fade" (click)="active = false"></div>
+<div class="modal" [ngStyle]="{width: width(), 'left': left, 'top': top}" >
+    <div class="modal-header"(dragstart)="onDragStart($event)" (drag)="onDrag($event)">
+        <h3>{{title}}</h3>
+        <span class="close" (click)="active = false">
+            <i class="fi fi-rr-cross-small"></i>
+        </span>
+    </div>
+    <ng-content></ng-content>
+</div>
+}
