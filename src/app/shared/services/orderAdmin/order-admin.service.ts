@@ -7,7 +7,7 @@ import { io } from 'socket.io-client';
 let emiter = new EventEmitter<any[]>()
 let orders:any  = []
 
-const socket = io('http://localhost:4444')
+//const socket = io('http://localhost:4444')
 
 
 @Injectable({
@@ -20,9 +20,9 @@ export class OrderAdminService extends OrderService{
   constructor() {
     super();
     
-    socket.on('allOrder', (data) => {
-      this.orderEmmiter.emit(data)
-    })
+    // socket.on('allOrder', (data) => {
+    //   this.orderEmmiter.emit(data)
+    // })
   }
 }
 
