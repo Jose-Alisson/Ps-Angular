@@ -10,14 +10,16 @@ export class Interceptor implements HttpInterceptor {
 
     private router = inject(Router)
 
-    constructor(@Inject(DOCUMENT) private document: Document){}
+    constructor(@Inject(DOCUMENT) private document: Document) { }
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         const token = this.document.defaultView?.localStorage?.getItem('token')
 
-        if(token != null){
+        if (token != null) {
             req = req.clone({
                 setHeaders: {
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Methods': 'GET,POST,OPTIONS,DELETE,PUT',
                     Authorization: `Bearer ${token}`
                 }
             })
@@ -25,7 +27,7 @@ export class Interceptor implements HttpInterceptor {
 
         return next.handle(req).pipe(catchError((err: HttpErrorResponse) => {
 
-            if(err.status === 401){
+            if (err.status === 401) {
                 this.router.navigate(['a/'])
             }
 
