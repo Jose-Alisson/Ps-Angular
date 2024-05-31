@@ -4,7 +4,7 @@
       <app-input [control]="authForm.controls.email" [title]="'Email'" style="--color-background: white; --color-text: black" [viewAllError]="allErrorVisibleForm">
         <app-validate [validatorName]="'required'" [message]="'O campo é obrigatorio.'"></app-validate>
         <app-validate [validatorName]="'email'" [message]="'Email invalido.'"></app-validate>
-        <app-validate [validatorName]="'alreadyExists'" [message]="'E-mail não encontrado.'"></app-validate>
+        <app-validate [validatorName]="'isExistEmailViewError'" [message]="'E-mail não encontrado.'"></app-validate>
       </app-input>
       <app-input [control]="authForm.controls.password" [title]="'password'" style="--color-background: white; --color-text: black" [viewAllError]="allErrorVisibleForm">
         <app-validate [validatorName]="'required'" [message]="'O campo é obrigatorio.'"></app-validate>

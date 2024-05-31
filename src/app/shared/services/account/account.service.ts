@@ -3,6 +3,7 @@ import { Inject, Injectable, inject } from '@angular/core';
 import { of, tap } from 'rxjs';
 import { SUNSHINE_API_URL } from '../API_URL';
 import { DOCUMENT } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +13,8 @@ export class AccountService {
   private http = inject(HttpClient)
 
   private URL = `${SUNSHINE_API_URL}/account`
+
+  private router = inject(Router)
 
   constructor(@Inject(DOCUMENT) private document: Document) { }
 
@@ -28,6 +31,11 @@ export class AccountService {
 
   sendCodeNumber(value: any) {
     return of()
+  }
+
+  sair(){
+    this.document.defaultView?.localStorage?.removeItem('token')
+    this.router.navigate(['a'])
   }
 
   isExist(email: string) {

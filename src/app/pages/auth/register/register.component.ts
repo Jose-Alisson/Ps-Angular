@@ -119,7 +119,7 @@ export class RegisterComponent {
       let account = {
         name: this.step2Form.controls.nome.value,
         email: this.step1Form.controls.email.value ?? '',
-        password: this.step1Form.controls.email.value ?? '',
+        password: this.step1Form.controls.password.value ?? '',
         phone: this.step3Form.controls.contato.value
       }
 

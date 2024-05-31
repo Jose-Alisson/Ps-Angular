@@ -15,6 +15,11 @@
       <h2>Pedidos</h2>
       &nbsp;
     </li>
+    <li (click)="sair()">
+      <i class="fi fi-rr-exit"></i>
+      <h2>Sair</h2>
+      &nbsp;
+    </li>
   </ul>
 </app-side-bar>
 <app-cart #cart ></app-cart>
@@ -33,6 +38,7 @@
       <li [routerLink]="['./home']">Inicio</li>
       <li [routerLink]="['./menu']">Cardápio</li>
       <li [routerLink]="['./orderList']">Pedidos</li>
+      <li (click)="sair()" style="display: flex;gap: 10px;align-items: center;"><i class="fi fi-rr-exit"></i> Sair</li>
     </ul>
     <div class="nav-actions">
       <div class="search">

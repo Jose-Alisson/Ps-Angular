@@ -31,6 +31,9 @@ export class Interceptor implements HttpInterceptor {
                 this.router.navigate(['a/'])
             }
 
+            if(err.status === 403){
+            }
+
             return throwError(() => err)
         }))
     }

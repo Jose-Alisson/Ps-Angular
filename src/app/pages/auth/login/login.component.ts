@@ -56,12 +56,14 @@ export class LoginComponent {
           this.router.navigate(['d']);
         },
         error: (err: HttpErrorResponse) => {
+          console.log(err)
+
           if (err.status === 404) {
-            this.authForm.get('email')?.setErrors({ isExistEmailViewError: true })
+            this.authForm.controls.email.setErrors({ isExistEmailViewError: true })
           }
 
           if (err.status === 401) {
-            this.authForm.get('password')?.setErrors({ passwordNoUnauthored: true })
+            this.authForm.controls.password.setErrors({ passwordNoUnauthored: true })
           }
         },
       });

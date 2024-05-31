@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { SideBarComponent } from '../../shared/comps/side-bar/side-bar.component';
 import { CartComponent } from '../../shared/comps/cart/cart.component';
+import { AccountService } from '../../shared/services/account/account.service';
 
 @Component({
   selector: 'app-dash',
@@ -25,6 +26,7 @@ export class DashComponent {
 
   private router = inject(Router);
   private form = inject(FormBuilder);
+  private account = inject(AccountService)
 
   public searchControl = this.form.control('', []);
 
@@ -38,5 +40,9 @@ export class DashComponent {
 
         this.searchEspaded?.nativeElement?.classList?.remove('active')
     }
+  }
+
+  sair(){
+    this.account.sair()
   }
 }

@@ -25,6 +25,7 @@ export class CartComponent implements OnInit {
     this.cart.byLogged().subscribe(data => {
       this.amounts = data
       console.log(data)
+      
     })
 
     this.cart.addEmiter.subscribe(data => {
